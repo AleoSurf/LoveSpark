@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>LoveSpark ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=VT323&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Varela Round', sans-serif;
+        background-color: #f0f8ff;
+      }
+      .font-pixel {
+        font-family: 'VT323', monospace;
+      }
+      /* Custom scrollbar for chat */
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+      
+      /* Y2K Pattern Background */
+      .y2k-pattern {
+        background-image: radial-gradient(#e0e7ff 2px, transparent 2px);
+        background-size: 20px 20px;
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Y2K Cute Tilted Triangle Cursor */
+      * {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23EC4899" stroke="white" stroke-width="1.5"><path d="M2 2l18 8-8 2-2 8L2 2z"/></svg>'), auto !important;
+      }
+      
+      button, a, input, [role="button"], .cursor-pointer {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="%238B5CF6" stroke="white" stroke-width="2"><path d="M2 2l18 8-8 2-2 8L2 2z"/></svg>'), pointer !important;
+      }
+
+      /* iOS Safe Area Support */
+      @supports (padding: env(safe-area-inset-bottom)) {
+        body {
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-area-pb {
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+      }
+
+      /* Touch optimization for iPhone */
+      @media (hover: none) and (pointer: coarse) {
+        button, input {
+          min-height: 44px;
+          min-width: 44px;
+        }
+      }
+    </style>
+    <!-- Simple polyfill for process.env to prevent ReferenceError if not provided by bundler -->
+    <script>
+      if (typeof process === 'undefined') {
+        window.process = { env: {} };
+      }
+    </script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react/": "https://esm.sh/react@18.2.0/",
+        "react-dom": "https://esm.sh/react-dom@18.2.0",
+        "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "@google/genai": "https://esm.sh/@google/genai@0.1.0",
+        "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.2.0",
+        "framer-motion": "https://esm.sh/framer-motion@11.0.3?deps=react@18.2.0,react-dom@18.2.0"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
