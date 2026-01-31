@@ -6,7 +6,10 @@ import { DateIdea } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const DateIdeaCard: React.FC = () => {
-  const [currentIdea, setCurrentIdea] = useState<DateIdea>(INITIAL_DATE_IDEAS[0]);
+  const [currentIdea, setCurrentIdea] = useState<DateIdea>(() => {
+    const randomIndex = Math.floor(Math.random() * INITIAL_DATE_IDEAS.length);
+    return INITIAL_DATE_IDEAS[randomIndex];
+  });
   const [isGenerating, setIsGenerating] = useState(false);
   const [customMood, setCustomMood] = useState('');
 
