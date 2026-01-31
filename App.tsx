@@ -140,11 +140,11 @@ const App: React.FC = () => {
                     </h2>
                  </motion.div>
               </div>
-              <div className="w-full max-w-2xl flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch">
-                <div className="flex-1 max-w-md sm:max-w-none mx-auto sm:mx-0">
+              <div className="w-full max-w-4xl flex flex-col lg:flex-row gap-4 lg:gap-6 justify-center items-stretch">
+                <div className="flex-1 w-full">
                   <DateIdeaCard />
                 </div>
-                <div className="flex-1 max-w-md sm:max-w-none mx-auto sm:mx-0">
+                <div className="flex-1 w-full">
                   <ChatBot />
                 </div>
               </div>
@@ -179,7 +179,7 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="text-center py-4 sm:py-6 text-blue-300 font-pixel text-xs relative z-10 flex flex-col items-center gap-4 px-4">
-        <div className="w-70 bg-white/60 backdrop-blur-md rounded-xl border-2 border-pink-100 shadow-lg  overflow-hidden">
+        <div className="w-70 bg-white/60 backdrop-blur-md rounded-xl border-2 border-pink-100 shadow-lg overflow-hidden">
           <iframe 
             data-testid="embed-iframe"
             style={{ borderRadius: '8px' }} 

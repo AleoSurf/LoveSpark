@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "Hii! ^_^ I'm Cupid's Helper. 💖 Tell me what's on your mind!", timestamp: new Date() }
+    { role: 'model', text: "Hii! ^_^ I'm Cupid's Helper.💖 Ready to raise ya hormone?😉", timestamp: new Date() }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
