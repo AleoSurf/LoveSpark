@@ -159,10 +159,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License / 许可证
 
-MIT License - Feel free to use for personal and commercial projects.
-
-MIT 许可证 - 可自由用于个人和商业项目。
-
 ---
 
 ## 👨‍💻 Author / 作者
