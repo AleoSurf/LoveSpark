@@ -172,7 +172,7 @@ Made with 💖 by Leo in 2026
 # Brief Project Introduction / 简短项目介绍
 
 ## English
-LoveSpark is a Y2K-styled dating advisor web app that generates personalized romantic date ideas using AI. Features include a cute opening envelope animation, AI-powered date suggestions with real locations in Paris/Hongkong, an interactive chatbot for relationship advice, and a romantic Spotify music player. Built with React, TypeScript, and Tailwind CSS.
+LoveSpark is a Y2K-styled dating advisor web app that generates personalized romantic date ideas using AI. Features include a cute opening envelope animation, AI-powered date suggestions , an interactive chatbot for relationship advice, and a romantic Spotify music player. Built with React, TypeScript, and Tailwind CSS.
 
 ## 中文
-LoveSpark 是一款 Y2K 风格的恋爱约会助手网页应用，使用 AI 生成个性化浪漫约会灵感。特色功能包括可爱的信封开场动画、AI 驱动的巴黎/粤港澳真实地点约会建议、互动聊天机器人提供恋爱咨询，以及浪漫的 Spotify 音乐播放器。基于 React、TypeScript 和 Tailwind CSS 构建。
+LoveSpark 是一款 Y2K 风格的恋爱约会助手网页应用，使用 AI 生成个性化浪漫约会灵感。特色功能包括可爱的信封开场动画、AI 驱动的约会建议、互动聊天机器人提供恋爱咨询，以及浪漫的 Spotify 音乐播放器。基于 React、TypeScript 和 Tailwind CSS 构建。
