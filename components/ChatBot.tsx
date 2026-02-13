@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-const CHAT_CACHE_KEY = 'lovespark.chat.cache.v1';
+const CHAT_CACHE_KEY = 'lovespark.chat.cache.v2';
 const MESSAGE_CACHE_LIMIT = 80;
 const HISTORY_CACHE_LIMIT = 160;
 const CACHE_SAVE_DEBOUNCE_MS = 300;
@@ -325,7 +325,7 @@ const ChatBot: React.FC = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div className={`flex max-w-full sm:max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} gap-2 items-end`}>
+              <div className={`flex max-w-full ${msg.role === 'user' ? 'sm:max-w-[85%] flex-row-reverse' : 'sm:max-w-[96%] flex-row'} gap-2 items-end`}>
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
                   className={`w-8 h-8 rounded-full border-2 flex items-center justify-center shrink-0 shadow-sm ${msg.role === 'user' ? 'bg-blue-100 border-blue-200 text-blue-500' : 'bg-pink-100 border-pink-200 text-pink-500'}`}
@@ -349,15 +349,15 @@ const ChatBot: React.FC = () => {
                       li: ({ node, ...props }) => <li className="mb-1 last:mb-0" {...props} />,
                       table: ({ node, ...props }) => (
                         <div className="my-2 overflow-x-auto">
-                          <table className="min-w-[520px] sm:min-w-full border-separate border-spacing-0 text-[14px] sm:text-[15px] leading-6" {...props} />
+                          <table className="min-w-[700px] border-separate border-spacing-0 text-[14px] sm:text-[15px] leading-6" {...props} />
                         </div>
                       ),
                       thead: ({ node, ...props }) => <thead className="bg-gray-50" {...props} />,
                       th: ({ node, ...props }) => (
-                        <th className="border border-gray-200 px-3 py-2 text-left font-semibold whitespace-normal break-words" {...props} />
+                        <th className="min-w-[140px] border border-gray-200 px-3 py-2 text-left font-semibold whitespace-normal break-words" {...props} />
                       ),
                       td: ({ node, ...props }) => (
-                        <td className="border border-gray-200 px-3 py-2 align-top whitespace-normal break-words" {...props} />
+                        <td className="min-w-[140px] border border-gray-200 px-3 py-2 align-top whitespace-normal break-words" {...props} />
                       )
                     }}
                   >

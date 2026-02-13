@@ -191,10 +191,11 @@ IMPORTANT: Respond with a valid JSON object only (no markdown):
   "description": "1-2 vivid sentences (max 25 words). Include specific actions + why it's fun/romantic. End with 2-3 fitting romantic emojis.",
   "duration": "Realistic time range (e.g. 1.5-2.5 hours)",
   "budget": "2-6 DIFFERENT emojis that match cost/vibe",
-  "vibe": "1-3 words (e.g. Competitive & Cute, Creative Chaos, Rom-Com Core, etc...)"
+  "vibe": "1-3 words (e.g. Creative Chaos, Active Supportive, Competitive Cute, Rom-Com Core, etc...)"
 }
 
-Each idea must belong to a DIFFERENT category than common dates be creative.
+Vibe must more creative then e.g. and aviod limit or repeat the content in e.g.
+Each idea must belong to a DIFFERENT activity category and be creative then common dates ideas.
 No markdown. Pure JSON only.`;
 
 
