@@ -8,7 +8,7 @@
 
 | Clawbot Campaign | Valentine Campaign |
 |---|---|
-| <img src="./docs/images/readme/clawbot-promo.png" width="620" alt="Clawbot campaign visual" /> | <img src="./docs/images/readme/valentine-promo.png" width="580" alt="Valentine campaign visual" /> |
+| <img src="./docs/images/readme/clawbot-promo.png" width="600" alt="Clawbot campaign visual" /> | <img src="./docs/images/readme/valentine-promo.png" width="500" alt="Valentine campaign visual" /> |
 
 ### English Intro
 
@@ -49,7 +49,7 @@ LoveSpark 是一款 Y2K 风格的恋爱约会助手网页应用，帮助情侣�
 ## 📸 Product Screenshots
 
 <p align="center">
-  <img src="./docs/images/readme/envelope.png" width="520" alt="Envelope opening screen" />
+  <img src="./docs/images/readme/envelope.png" width="1000" alt="Envelope opening screen" />
 </p>
 
 <p align="center">
