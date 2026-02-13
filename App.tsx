@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Envelope from './components/Envelope';
 import ChatBot from './components/ChatBot';
 import DateIdeaCard from './components/DateIdeaCard';
+import SocialLinks from './components/SocialLinks';
 import { AppState } from './types';
-import { Heart, Sparkles, MessageCircle, Home, Power, X } from 'lucide-react';
+import { Heart, Power } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type View = 'home' | 'spark' | 'adviser';
@@ -103,6 +104,8 @@ const App: React.FC = () => {
                 </motion.button>
               ))}
             </div>
+
+            <SocialLinks />
 
             {/* Exit Button */}
             <motion.button
