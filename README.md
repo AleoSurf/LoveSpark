@@ -4,7 +4,24 @@
 <img width="1200" height="475" alt="LoveSpark Banner" src="" />
 </div> -->
 
----
+## 🔥 Valentine Campaign Highlights
+
+<p align="center">
+  <img src="./docs/images/readme/valentine-promo.png" width="420" alt="Valentine campaign visual" />
+  <img src="./docs/images/readme/clawbot-promo.png" width="420" alt="Clawbot campaign visual" />
+</p>
+
+### English Hook (Primary)
+- Built overnight for Valentine panic mode: LoveSpark turns "idk what to do" into playful, usable date plans.
+- From spark ideas to adviser chat, this Y2K AI copilot helps couples plan faster and flirt smarter.
+
+### 中文 Hook (Secondary)
+- 为“情人节临时救场”连夜做的 LoveSpark：把“今天约会干嘛”变成可直接执行的方案。
+- 从约会灵感到恋爱顾问聊天，这个 Y2K 风 AI 工具让情侣更快出计划、更自然升温。
+
+### CTA
+- EN: Try the vibe. Remix ideas. Keep the spark alive.
+- CN: 先试氛围，再一键重抽，让约会不再尬住。
 
 ## 📖 Project Overview / 项目概述
 
@@ -25,6 +42,27 @@ LoveSpark 是一款 Y2K 风格的恋爱约会助手网页应用，帮助情侣�
 | Interactive chatbot for relationship advice | 互动聊天机器人提供恋爱建议 |
 | Romantic Spotify music player | 浪漫 Spotify 音乐播放器 |
 | Responsive design for mobile & desktop | 响应式设计，适配移动端和桌面端 |
+
+---
+
+## 📸 Product Screenshots
+
+<p align="center">
+  <img src="./docs/images/readme/envelope.png" width="420" alt="Envelope opening screen" />
+</p>
+
+<p align="center">
+  <img src="./docs/images/readme/home-ui.png" width="860" alt="Home dashboard overview" />
+</p>
+
+<p align="center">
+  <img src="./docs/images/readme/date-idea.png" width="420" alt="Spark date idea card" />
+  <img src="./docs/images/readme/adviser-chat.png" width="420" alt="Adviser chat with markdown table" />
+</p>
+
+<p align="center">
+  <img src="./docs/images/readme/home-chatting.png" width="860" alt="Home view while chatting" />
+</p>
 
 ---
 

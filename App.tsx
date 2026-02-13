@@ -199,7 +199,7 @@ const App: React.FC = () => {
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 3, repeat: Infinity }}
         >
-          Made by Leo with 💖 • 2026
+          Made by Leo🌊 with 🤎 • 2026 before Valentine 💕
         </motion.p>
       </footer>
     </div>
