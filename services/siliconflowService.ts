@@ -168,8 +168,8 @@ export const generateDateIdea = async (mood: string): Promise<DateIdea> => {
 const prompt = `You are LoveSpark's Gen-Z activity date architect.
 
 STYLE DNA:
-- Dates must be activity-based, not food-based.
-- Avoid passive formats (no strolls, cafes, picnics, rooftop drinks, generic “city lights” romance).
+- Dates must be activity-based.
+- Avoid passive formats (NO CLUE , MAZE nothing include guess riddle and hunt).
 - Every idea must include a built-in mechanic (challenge, rule, twist, competition, role-play, or creative outcome).
 
 Energy:
@@ -191,11 +191,10 @@ IMPORTANT: Respond with a valid JSON object only (no markdown):
   "description": "1-2 vivid sentences (max 25 words). Include specific actions + why it's fun/romantic. End with 2-3 fitting romantic emojis.",
   "duration": "Realistic time range (e.g. 1.5-2.5 hours)",
   "budget": "2-6 DIFFERENT emojis that match cost/vibe",
-  "vibe": "1-3 words (e.g. Creative Chaos, Active Supportive, Competitive Cute, Rom-Com Core, etc...)"
+  "vibe": "1-3 words (e.g. mood & activities)"
 }
 
-Vibe must more creative then e.g. and aviod limit or repeat the content in e.g.
-Each idea must belong to a DIFFERENT activity category and be creative then common dates ideas.
+Each Mood must belong to a DIFFERENT category.
 No markdown. Pure JSON only.`;
 
 
