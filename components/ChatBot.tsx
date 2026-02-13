@@ -325,16 +325,16 @@ const ChatBot: React.FC = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div className={`flex max-w-full ${msg.role === 'user' ? 'sm:max-w-[85%] flex-row-reverse' : 'sm:max-w-[96%] flex-row'} gap-2 items-end`}>
+              <div className={`flex max-w-full ${msg.role === 'user' ? 'sm:max-w-[85%] flex-row-reverse' : 'sm:max-w-[96%] flex-row'} gap-1.5 sm:gap-2 items-end`}>
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
-                  className={`w-8 h-8 rounded-full border-2 flex items-center justify-center shrink-0 shadow-sm ${msg.role === 'user' ? 'bg-blue-100 border-blue-200 text-blue-500' : 'bg-pink-100 border-pink-200 text-pink-500'}`}
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 flex items-center justify-center shrink-0 shadow-sm ${msg.role === 'user' ? 'bg-blue-100 border-blue-200 text-blue-500' : 'bg-pink-100 border-pink-200 text-pink-500'}`}
                 >
-                  {msg.role === 'user' ? <User size={14} /> : <Sparkles size={14} />}
+                  {msg.role === 'user' ? <User size={12} className="sm:w-[14px] sm:h-[14px]" /> : <Sparkles size={12} className="sm:w-[14px] sm:h-[14px]" />}
                 </motion.div>
 
                 <div
-                  className={`p-4 px-5 text-[16px] sm:text-base leading-7 sm:leading-6 font-medium whitespace-pre-wrap break-words overflow-x-auto shadow-[4px_4px_0px_rgba(0,0,0,0.05)] ${
+                  className={`px-3 py-2.5 sm:p-4 sm:px-5 text-[15px] sm:text-base leading-6 sm:leading-6 font-medium whitespace-pre-wrap break-words overflow-x-auto shadow-[4px_4px_0px_rgba(0,0,0,0.05)] ${
                     msg.role === 'user'
                       ? 'bg-blue-500 text-white rounded-[20px] rounded-br-sm border-2 border-blue-600'
                       : 'bg-white text-gray-600 border-2 border-pink-100 rounded-[20px] rounded-bl-sm'
@@ -343,21 +343,23 @@ const ChatBot: React.FC = () => {
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
-                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-2 last:mb-0" {...props} />,
-                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 mb-2 last:mb-0" {...props} />,
-                      li: ({ node, ...props }) => <li className="mb-1 last:mb-0" {...props} />,
+                      p: ({ node, ...props }) => <p className="mb-1.5 sm:mb-2 last:mb-0" {...props} />,
+                      ul: ({ node, ...props }) => <ul className="list-disc pl-4 sm:pl-5 mb-1.5 sm:mb-2 last:mb-0" {...props} />,
+                      ol: ({ node, ...props }) => <ol className="list-decimal pl-4 sm:pl-5 mb-1.5 sm:mb-2 last:mb-0" {...props} />,
+                      li: ({ node, ...props }) => <li className="mb-0.5 sm:mb-1 last:mb-0" {...props} />,
                       table: ({ node, ...props }) => (
                         <div className="my-2 overflow-x-auto">
-                          <table className="min-w-[700px] border-separate border-spacing-0 text-[14px] sm:text-[15px] leading-6" {...props} />
+                          <table className="w-full sm:min-w-[700px] border-separate border-spacing-0 text-[13px] sm:text-[15px] leading-5 sm:leading-6" {...props} />
                         </div>
                       ),
-                      thead: ({ node, ...props }) => <thead className="bg-gray-50" {...props} />,
+                      thead: ({ node, ...props }) => <thead className="hidden sm:table-header-group bg-gray-50" {...props} />,
+                      tbody: ({ node, ...props }) => <tbody className="block sm:table-row-group" {...props} />,
+                      tr: ({ node, ...props }) => <tr className="block sm:table-row mb-2 sm:mb-0 border border-gray-200 sm:border-0 rounded-xl sm:rounded-none overflow-hidden" {...props} />,
                       th: ({ node, ...props }) => (
-                        <th className="min-w-[140px] border border-gray-200 px-3 py-2 text-left font-semibold whitespace-normal break-words" {...props} />
+                        <th className="hidden sm:table-cell min-w-[140px] border border-gray-200 px-3 py-2 text-left font-semibold whitespace-normal break-words" {...props} />
                       ),
                       td: ({ node, ...props }) => (
-                        <td className="min-w-[140px] border border-gray-200 px-3 py-2 align-top whitespace-normal break-words" {...props} />
+                        <td className="block sm:table-cell min-w-0 sm:min-w-[140px] border-x border-t border-gray-200 sm:border px-3 py-2 align-top whitespace-normal break-words first:font-semibold first:text-gray-700 last:border-b sm:last:border-b-0" {...props} />
                       )
                     }}
                   >
@@ -365,28 +367,28 @@ const ChatBot: React.FC = () => {
                   </ReactMarkdown>
 
                   {msg.role === 'model' && msg.text.trim() && (
-                    <div className="mt-3 flex items-center justify-end gap-1.5">
+                    <div className="mt-2 sm:mt-3 flex items-center justify-end gap-1 sm:gap-1.5">
                       <button
                         type="button"
                         onClick={() => handleCopyMessage(msg.text, idx)}
-                        className="p-1.5 rounded-lg bg-pink-50/70 hover:bg-pink-100 text-pink-500 transition-colors"
+                        className="p-1 sm:p-1.5 rounded-lg bg-pink-50/70 hover:bg-pink-100 text-pink-500 transition-colors shrink-0"
                         title="Copy"
                         aria-label="Copy response"
                       >
                         {actionFeedback?.index === idx && actionFeedback.action === 'copy'
-                          ? <Check size={14} />
-                          : <Copy size={14} />}
+                          ? <Check size={13} className="sm:w-[14px] sm:h-[14px]" />
+                          : <Copy size={13} className="sm:w-[14px] sm:h-[14px]" />}
                       </button>
                       <button
                         type="button"
                         onClick={() => handleShareMessage(msg.text, idx)}
-                        className="p-1.5 rounded-lg bg-pink-50/70 hover:bg-pink-100 text-pink-500 transition-colors"
+                        className="p-1 sm:p-1.5 rounded-lg bg-pink-50/70 hover:bg-pink-100 text-pink-500 transition-colors shrink-0"
                         title="Share"
                         aria-label="Share response"
                       >
                         {actionFeedback?.index === idx && actionFeedback.action === 'share'
-                          ? <Check size={14} />
-                          : <Share2 size={14} />}
+                          ? <Check size={13} className="sm:w-[14px] sm:h-[14px]" />
+                          : <Share2 size={13} className="sm:w-[14px] sm:h-[14px]" />}
                       </button>
                     </div>
                   )}
@@ -399,7 +401,7 @@ const ChatBot: React.FC = () => {
       </div>
 
       <div className="p-3 sm:p-4 bg-white/80 backdrop-blur border-t-4 border-pink-100 z-10 relative">
-        <div className="flex gap-2 items-center bg-gray-50 rounded-[20px] sm:rounded-full pl-4 sm:pl-5 pr-2 py-2.5 border-2 border-gray-200 focus-within:border-pink-300 focus-within:bg-white focus-within:shadow-[0_0_15px_rgba(244,114,182,0.2)] transition-all">
+        <div className="flex gap-1.5 sm:gap-2 items-center bg-gray-50 rounded-[20px] sm:rounded-full pl-3 sm:pl-5 pr-1.5 sm:pr-2 py-2 sm:py-2.5 border-2 border-gray-200 focus-within:border-pink-300 focus-within:bg-white focus-within:shadow-[0_0_15px_rgba(244,114,182,0.2)] transition-all">
           <input
             type="text"
             className="flex-1 bg-transparent outline-none text-[16px] sm:text-base text-gray-600 placeholder-gray-400 font-medium"
@@ -414,7 +416,7 @@ const ChatBot: React.FC = () => {
             whileTap={{ scale: 0.9 }}
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="p-3 bg-pink-400 hover:bg-pink-500 active:scale-95 text-white rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[2px_2px_0px_rgba(190,24,93,1)]"
+            className="p-2.5 sm:p-3 shrink-0 bg-pink-400 hover:bg-pink-500 active:scale-95 text-white rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[2px_2px_0px_rgba(190,24,93,1)]"
           >
             <Send size={16} fill="white" />
           </motion.button>

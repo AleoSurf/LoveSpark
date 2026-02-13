@@ -43,31 +43,31 @@ const DateIdeaCard: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="
-        group relative bg-white rounded-[2.5rem] p-6 md:p-8 border-4 border-blue-100 h-full flex flex-col overflow-hidden
+        group relative bg-white rounded-[2.5rem] p-4 sm:p-6 md:p-8 border-4 border-blue-100 h-full flex flex-col overflow-hidden
         transition-all duration-300
         hover:scale-[1.01] hover:z-20
         hover:shadow-[12px_12px_0px_rgba(191,219,254,1)]
         hover:border-blue-300
       "
     >
-      <div className="absolute -top-4 -right-4 w-24 h-24 bg-pink-100 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+      <div className="hidden sm:block absolute -top-4 -right-4 w-24 h-24 bg-pink-100 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-6 right-6 text-2xl"
+        className="hidden sm:block absolute top-6 right-6 text-2xl"
       >
         ✨
       </motion.div>
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-6 left-6 text-xl"
+        className="hidden sm:block absolute bottom-6 left-6 text-xl"
       >
         💿
       </motion.div>
 
-      <div className="flex items-center justify-between mb-6 relative z-10">
-        <h2 className="text-xl font-bold text-blue-500 font-pixel flex items-center gap-2">
+      <div className="flex items-center justify-between mb-4 sm:mb-6 relative z-10">
+        <h2 className="text-lg sm:text-xl font-bold text-blue-500 font-pixel flex items-center gap-2">
           <Music size={20} className="text-pink-400" />
           Date.mp3
         </h2>
@@ -88,29 +88,29 @@ const DateIdeaCard: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="bg-blue-50/50 rounded-2xl p-6 mb-6 border-2 border-blue-100 shadow-inner"
+            className="bg-blue-50/50 rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 border-2 border-blue-100 shadow-inner"
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
               {currentIdea.title}
               <Sparkles size={18} className="text-yellow-400" />
             </h3>
-            <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line font-medium">
+            <p className="text-gray-600 leading-relaxed text-base sm:text-lg whitespace-pre-line font-medium">
               {currentIdea.description}
             </p>
           </motion.div>
         </AnimatePresence>
 
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-4 sm:mb-6">
           <motion.div
             whileHover={{ y: -5 }}
-            className="flex items-center gap-2 text-gray-600 bg-white border-2 border-pink-100 p-3 rounded-2xl shadow-sm"
+            className="flex items-center gap-2 text-gray-600 bg-white border-2 border-pink-100 p-2.5 sm:p-3 rounded-2xl shadow-sm"
           >
             <Clock size={20} className="text-pink-400" />
             <span className="text-sm font-bold">{currentIdea.duration}</span>
           </motion.div>
           <motion.div
             whileHover={{ y: -5 }}
-            className="flex items-center gap-2 text-gray-600 bg-white border-2 border-blue-100 p-3 rounded-2xl shadow-sm"
+            className="flex items-center gap-2 text-gray-600 bg-white border-2 border-blue-100 p-2.5 sm:p-3 rounded-2xl shadow-sm"
           >
             <span className="text-xl">💏</span>
             <span className="text-sm font-bold">{currentIdea.budget}</span>
@@ -118,9 +118,9 @@ const DateIdeaCard: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-t-4 border-dashed border-gray-100 pt-6 relative z-10">
+      <div className="border-t-4 border-dashed border-gray-100 pt-4 sm:pt-6 relative z-10">
         <label className="block text-xs font-pixel text-gray-400 mb-3 uppercase tracking-wider">Customize Vibe</label>
-        <div className="flex flex-col sm:flex-row gap-3 sm:pr-2">
+        <div className="flex flex-col gap-3 sm:flex-row sm:pr-2">
           <input
             type="text"
             placeholder="Type a mood... (e.g. cozy)"
@@ -128,20 +128,20 @@ const DateIdeaCard: React.FC = () => {
             value={customMood}
             onChange={(e) => setCustomMood(e.target.value)}
           />
-          <div className="flex gap-3 sm:ml-auto items-center">
+          <div className="grid grid-cols-[auto_1fr] sm:flex gap-3 sm:ml-auto items-center w-full sm:w-auto justify-center sm:justify-end">
             <motion.button
               type="button"
               animate={isGenerating ? {} : { y: [0, -4, 0] }}
               transition={isGenerating ? {} : { duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-              whileHover={isGenerating ? {} : { scale: 1.18, rotate: [0, -8, 8, -6, 0], y: -6 }}
-              whileTap={isGenerating ? {} : { scale: 0.86, rotate: -10 }}
+              whileHover={isGenerating ? {} : { scale: 1.1, rotate: [0, -4, 4, -3, 0], y: -2 }}
+              whileTap={isGenerating ? {} : { scale: 0.92, rotate: -6 }}
               onClick={handleRandomLocal}
               disabled={isGenerating}
               title="Random idea"
               aria-label="Random idea"
               className="
                 bg-transparent border-0 outline-none
-                text-4xl sm:text-5xl leading-none p-1
+                text-4xl sm:text-5xl leading-none p-1 shrink-0
                 drop-shadow-[0_4px_10px_rgba(16,185,129,0.5)] hover:drop-shadow-[0_8px_18px_rgba(20,184,166,0.6)]
                 transition-all duration-200
                 disabled:opacity-45 disabled:cursor-not-allowed disabled:drop-shadow-none
@@ -156,7 +156,7 @@ const DateIdeaCard: React.FC = () => {
               disabled={isGenerating}
               className="
                 bg-gradient-to-br from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600
-                text-white px-6 py-3 rounded-xl font-bold font-pixel transition-all
+                text-white px-6 py-3 rounded-xl font-bold font-pixel transition-all w-full sm:w-auto
                 shadow-[4px_4px_0px_rgba(30,58,138,1)] hover:shadow-[2px_2px_0px_rgba(30,58,138,1)] hover:translate-x-[2px] hover:translate-y-[2px]
                 flex items-center justify-center gap-2 disabled:opacity-70 disabled:shadow-none disabled:transform-none
               "
