@@ -8,7 +8,7 @@
 
 | Clawbot Campaign | Valentine Campaign |
 |---|---|
-| <img src="./docs/images/readme/clawbot-promo.png" width="500" alt="Clawbot campaign visual" /> | <img src="./docs/images/readme/valentine-promo.png" width="420" alt="Valentine campaign visual" /> |
+| <img src="./docs/images/readme/clawbot-promo.png" width="620" alt="Clawbot campaign visual" /> | <img src="./docs/images/readme/valentine-promo.png" width="580" alt="Valentine campaign visual" /> |
 
 ### English Intro
 
@@ -49,19 +49,19 @@ LoveSpark 是一款 Y2K 风格的恋爱约会助手网页应用，帮助情侣�
 ## 📸 Product Screenshots
 
 <p align="center">
-  <img src="./docs/images/readme/envelope.png" width="420" alt="Envelope opening screen" />
+  <img src="./docs/images/readme/envelope.png" width="520" alt="Envelope opening screen" />
 </p>
 
 <p align="center">
-  <img src="./docs/images/readme/home-ui.png" width="860" alt="Home dashboard overview" />
+  <img src="./docs/images/readme/home-ui.png" width="1000" alt="Home dashboard overview" />
 </p>
 
 | Spark Date Idea | Adviser Chat |
 |---|---|
-| <img src="./docs/images/readme/date-idea.png" width="420" alt="Spark date idea card" /> | <img src="./docs/images/readme/adviser-chat.png" width="520" alt="Adviser chat with markdown table" /> |
+| <img src="./docs/images/readme/date-idea.png" width="520" alt="Spark date idea card" /> | <img src="./docs/images/readme/adviser-chat.png" width="600" alt="Adviser chat with markdown table" /> |
 
 <p align="center">
-  <img src="./docs/images/readme/home-chatting.png" width="860" alt="Home view while chatting" />
+  <img src="./docs/images/readme/home-chatting.png" width="1000" alt="Home view while chatting" />
 </p>
 
 ---
