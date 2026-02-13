@@ -58,7 +58,7 @@ LoveSpark 是一款 Y2K 风格的恋爱约会助手网页应用，帮助情侣�
 
 | Spark Date Idea | Adviser Chat |
 |---|---|
-| <img src="./docs/images/readme/date-idea.png" width="420" alt="Spark date idea card" /> | <img src="./docs/images/readme/adviser-chat.png" width="420" alt="Adviser chat with markdown table" /> |
+| <img src="./docs/images/readme/date-idea.png" width="420" alt="Spark date idea card" /> | <img src="./docs/images/readme/adviser-chat.png" width="520" alt="Adviser chat with markdown table" /> |
 
 <p align="center">
   <img src="./docs/images/readme/home-chatting.png" width="860" alt="Home view while chatting" />
