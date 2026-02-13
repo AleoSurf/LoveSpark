@@ -8,7 +8,7 @@
 
 | Clawbot Campaign | Valentine Campaign |
 |---|---|
-| <img src="./docs/images/readme/clawbot-promo.png" width="420" alt="Clawbot campaign visual" /> | <img src="./docs/images/readme/valentine-promo.png" width="420" alt="Valentine campaign visual" /> |
+| <img src="./docs/images/readme/clawbot-promo.png" width="500" alt="Clawbot campaign visual" /> | <img src="./docs/images/readme/valentine-promo.png" width="420" alt="Valentine campaign visual" /> |
 
 ### English Intro
 
@@ -203,7 +203,7 @@ Apache License Version 2.0, January 2004
 
 ## 👨‍💻 Author / 作者
 
-Made with 💖 by Leo in 2026
+Made with 💖 by Leo🌊 in 2026b efore Valentine 💓 
 
 ---
 
