@@ -5,7 +5,7 @@ const socials = [
     id: 'github',
     href: 'https://github.com/AleoSurf',
     label: 'GitHub',
-    iconSrc: 'https://img.icons8.com/ios11/512/228BE6/github.png',
+    iconSrc: 'https://cdn-icons-png.flaticon.com/512/25/25231.png',
   },
   {
     id: 'discord',
