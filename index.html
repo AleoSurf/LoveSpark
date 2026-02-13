@@ -15,12 +15,35 @@
         font-family: 'VT323', monospace;
       }
       /* Custom scrollbar for chat */
-      .scrollbar-hide::-webkit-scrollbar {
-          display: none;
+      .chat-scrollbar {
+        scrollbar-gutter: stable;
       }
-      .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+      @media (hover: hover) and (pointer: fine) {
+        .chat-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: transparent transparent;
+        }
+        .chat-scrollbar:hover {
+          scrollbar-color: rgba(236, 72, 153, 0.65) rgba(244, 114, 182, 0.12);
+        }
+        .chat-scrollbar::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+        .chat-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: 999px;
+        }
+        .chat-scrollbar::-webkit-scrollbar-thumb {
+          background: transparent;
+          border-radius: 999px;
+        }
+        .chat-scrollbar:hover::-webkit-scrollbar-track {
+          background: rgba(244, 114, 182, 0.12);
+        }
+        .chat-scrollbar:hover::-webkit-scrollbar-thumb {
+          background: rgba(236, 72, 153, 0.65);
+        }
       }
       
       /* Y2K Pattern Background */
@@ -48,6 +71,7 @@
       button, a, input, [role="button"], .cursor-pointer {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="%238B5CF6" stroke="white" stroke-width="2"><path d="M2 2l18 8-8 2-2 8L2 2z"/></svg>'), pointer !important;
       }
+
 
       /* iOS Safe Area Support */
       @supports (padding: env(safe-area-inset-bottom)) {

@@ -17,3 +17,4 @@ export enum AppState {
   OPENING = 'OPENING',
   OPEN = 'OPEN'
 }
+

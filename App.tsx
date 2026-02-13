@@ -157,7 +157,7 @@ const App: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
-              className="w-full max-w-md mx-auto"
+              className="w-full max-w-lg mx-auto min-h-[70vh]"
             >
               <DateIdeaCard />
             </motion.div>
@@ -169,7 +169,7 @@ const App: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="w-full max-w-md mx-auto"
+              className="w-full max-w-5xl mx-auto min-h-[70vh]"
             >
               <ChatBot />
             </motion.div>

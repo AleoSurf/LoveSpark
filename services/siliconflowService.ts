@@ -1,7 +1,6 @@
-import { Message, DateIdea } from '../types';
+import { DateIdea } from '../types';
 import { SYSTEM_INSTRUCTION } from '../constants';
 
-// SiliconFlow API 配置
 const API_BASE_URL = 'https://api.siliconflow.com/v1/chat/completions';
 const MODEL_NAME = 'openai/gpt-oss-20b';
 
@@ -13,29 +12,75 @@ interface SiliconFlowChunk {
   choices: Array<{
     index: number;
     delta: {
-      role: string;
-      content: string;
+      role?: string;
+      content?: string;
     };
     finish_reason: string | null;
   }>;
 }
 
+export type ConversationEntry = { role: string; content: string };
+
 const getApiKey = (): string => {
   const apiKey = import.meta.env.VITE_SILICONFLOW_API_KEY;
   if (!apiKey) {
-    console.warn("SiliconFlow API Key is missing! Ensure VITE_SILICONFLOW_API_KEY is set in .env file.");
+    console.warn('SiliconFlow API Key is missing! Ensure VITE_SILICONFLOW_API_KEY is set in .env file.');
   }
   return apiKey || '';
 };
 
-// 对话历史存储（用于流式对话）
-let conversationHistory: Array<{ role: string; content: string }> = [];
+let conversationHistory: ConversationEntry[] = [];
 
-export const initChatSession = (): void => {
-  // 初始化时设置系统指令
-  conversationHistory = [
-    { role: 'system', content: SYSTEM_INSTRUCTION }
-  ];
+const createSystemMessage = (): ConversationEntry => ({
+  role: 'system',
+  content: SYSTEM_INSTRUCTION,
+});
+
+const sanitizeConversationHistory = (history: ConversationEntry[]): ConversationEntry[] => {
+  const validItems = history.filter((item) => (
+    item &&
+    typeof item.role === 'string' &&
+    item.role.trim().length > 0 &&
+    typeof item.content === 'string'
+  ));
+
+  const nonSystemItems = validItems.filter((item) => item.role !== 'system');
+  return [createSystemMessage(), ...nonSystemItems];
+};
+
+const ensureConversationInitialized = (): void => {
+  if (conversationHistory.length === 0) {
+    conversationHistory = [createSystemMessage()];
+  }
+};
+
+export const initChatSession = (forceReset = false): void => {
+  if (forceReset || conversationHistory.length === 0) {
+    conversationHistory = [createSystemMessage()];
+  }
+};
+
+export const hasConversationHistory = (): boolean => {
+  return conversationHistory.length > 1;
+};
+
+export const getConversationHistorySnapshot = (): ConversationEntry[] => {
+  return conversationHistory.map((item) => ({ ...item }));
+};
+
+export const restoreConversationHistory = (history: ConversationEntry[]): void => {
+  if (!Array.isArray(history) || history.length === 0) {
+    initChatSession(true);
+    return;
+  }
+
+  const normalized = sanitizeConversationHistory(history);
+  if (normalized.length === 0) {
+    initChatSession(true);
+    return;
+  }
+
+  conversationHistory = normalized;
 };
 
 export const sendMessageStream = async (
@@ -47,13 +92,13 @@ export const sendMessageStream = async (
     throw new Error('API Key is missing');
   }
 
-  // 添加用户消息到历史
+  ensureConversationInitialized();
   conversationHistory.push({ role: 'user', content: message });
 
   const response = await fetch(API_BASE_URL, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -86,32 +131,29 @@ export const sendMessageStream = async (
     const lines = chunk.split('\n');
 
     for (const line of lines) {
-      if (line.startsWith('data: ')) {
-        const data = line.slice(6);
-        if (data === '[DONE]') continue;
+      if (!line.startsWith('data: ')) continue;
 
-        try {
-          const parsed: SiliconFlowChunk = JSON.parse(data);
-          const content = parsed.choices[0]?.delta?.content;
-          if (content) {
-            fullResponse += content;
-            onChunk(fullResponse);
-          }
-        } catch (e) {
-          // 忽略解析错误
+      const data = line.slice(6);
+      if (data === '[DONE]') continue;
+
+      try {
+        const parsed: SiliconFlowChunk = JSON.parse(data);
+        const content = parsed.choices[0]?.delta?.content;
+        if (content) {
+          fullResponse += content;
+          onChunk(fullResponse);
         }
+      } catch {
+        // Ignore stream parse errors.
       }
     }
   }
 
-  // 保存助手回复到历史
   conversationHistory.push({ role: 'assistant', content: fullResponse });
 };
 
-// 浪漫emoji池
 const ROMANTIC_EMOJIS = ['💕', '🌹', '💐', '💝', '💖', '💗', '💓', '💌', '🌸', '💮', '🏩', '🎁', '🍷', '🕯️', '🎵', '💃', '🧡', '🩷', '🤍', '🩵', '🗼', '🌊', '🍜', '🎆', '☕', '🚲', '🎨', '🌆', '🛥️', '💎'];
 
-// 提取emoji的工具函数
 function extractEmojis(text: string): string[] {
   const emojiPattern = /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu;
   return text.match(emojiPattern) || [];
@@ -123,44 +165,43 @@ export const generateDateIdea = async (mood: string): Promise<DateIdea> => {
     throw new Error('API Key is missing');
   }
 
-  const prompt = `You are a Gen Z dating curator with a NewJeans-core aesthetic. Create a creative, romantic date itinerary based on this mood/theme: "${mood}".
+const prompt = `You are LoveSpark's Gen-Z activity date architect.
 
-IMPORTANT: Respond with a valid JSON object (no markdown):
+STYLE DNA:
+- Dates must be activity-based, not food-based.
+- Avoid passive formats (no strolls, cafes, picnics, rooftop drinks, generic “city lights” romance).
+- Every idea must include a built-in mechanic (challenge, rule, twist, competition, role-play, or creative outcome).
+
+Energy:
+Playful, chaotic, witty, a little self-aware. Gen-Z coded but not cringe.
+
+Generate ONE date idea based on this mood/theme: "${mood}".
+
+It must:
+- Feel like a structured activity (not hanging out).
+- Include a clear action sequence.
+- Include a playful hook or rule.
+- Avoid overused these words: moonlit, neon, midnight, stroll, cafe, picnic, rooftop, cocktails, city lights.
+- Not revolve around just eating/drinking.
+
+IMPORTANT: Respond with a valid JSON object only (no markdown):
 
 {
-  "title": "Catchy activity title with 2-3 perfect Y2K emojis",
-  "description": "Write this like a trending, high-vibe Xiaohongshu Gen-Z date suggestion post.
-  (List each action on a NEW LINE starting with a unique emoji. Don't use fancy words and sounds like AI, all in 50 Words):
-✨ [Action 1]
-🎞️ [Action 2]Romance in the realistic way
-🍦 [Action 3]
-  Use minimal slang, focus on 'visual' storytelling with corresponding emoji",
-
-  "duration": "Time (e.g. 2.5h)",
-  "budget": "2-7 romantic emojis that perfectly capture the vibe",
-  "vibe": "One word (e.g., Dreamy, Cozy, Vibrant)"
+  "title": "Catchy creative title with 1-3 fitting emojis",
+  "description": "1-2 vivid sentences (max 25 words). Include specific actions + why it's fun/romantic. End with 2-3 fitting romantic emojis.",
+  "duration": "Realistic time range (e.g. 1.5-2.5 hours)",
+  "budget": "2-6 DIFFERENT emojis that match cost/vibe",
+  "vibe": "1-3 words (e.g. Competitive & Cute, Creative Chaos, Rom-Com Core, etc...)"
 }
 
-Requirements:
-🎯 Must mention REAL locations in Paris or Guangdong-Hong Kong-Macao Greater Bay Area:
+Each idea must belong to a DIFFERENT category than common dates be creative.
+No markdown. Pure JSON only.`;
 
-- NEVER use '1, 2, 3' or blocky paragraphs for actions. 
-- Every 'Move' must have its own line.
-- Tone: Ethereal, relaxed, 'NewJeans-core'.
-
-🎁 TOGGLES - List 2-4 creative and relevant items/objects needed for this date. Be imaginative!
-   • Format: "• [Emoji] [Item Name]" (e.g., "• 📸 Vintage Camera")
-   • Include these at the end of the description, separated by a newline.
-
-✨ Style: Emotional, poetic, visual. Use Creative emojis throughout the description.
-💰 Budget: Choose 2-6 DIFFERENT emojis that genuinely represent the romantic mood.
-
-Pure JSON only, no markdown.`;
 
   const response = await fetch(API_BASE_URL, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -170,7 +211,7 @@ Pure JSON only, no markdown.`;
         { role: 'user', content: prompt }
       ],
       stream: false,
-      temperature: 0.8,
+      temperature: 0.95,
       max_tokens: 4096,
     }),
   });
@@ -187,21 +228,17 @@ Pure JSON only, no markdown.`;
     throw new Error('No content in response');
   }
 
-  // 解析 JSON 响应
   try {
     const cleanJson = content.replace(/```json/g, '').replace(/```/g, '').trim();
     const idea = JSON.parse(cleanJson) as DateIdea;
-    
-    // 确保 budget 有2-7个浪漫emoji
+
     const currentEmojis = extractEmojis(idea.budget);
-    
+
     if (currentEmojis.length >= 2 && currentEmojis.length <= 7) {
-      // 保持模型返回的数量
       idea.budget = currentEmojis.join('');
     } else if (currentEmojis.length > 6) {
       idea.budget = currentEmojis.slice(0, 6).join('');
     } else if (currentEmojis.length > 0) {
-      // 补充到至少2个
       while (currentEmojis.length < 2) {
         const randomEmoji = ROMANTIC_EMOJIS[Math.floor(Math.random() * ROMANTIC_EMOJIS.length)];
         if (!currentEmojis.includes(randomEmoji)) {
@@ -210,21 +247,20 @@ Pure JSON only, no markdown.`;
       }
       idea.budget = currentEmojis.join('');
     } else {
-      // 完全没有emoji，随机选择3个
       const shuffled = [...ROMANTIC_EMOJIS].sort(() => 0.5 - Math.random());
       idea.budget = shuffled.slice(0, 3).join('');
     }
-    
+
     return idea;
-  } catch (e) {
+  } catch {
     console.error('Failed to parse date idea JSON:', content);
     const shuffled = [...ROMANTIC_EMOJIS].sort(() => 0.5 - Math.random());
     return {
-      title: "✨ Dreamy Date Idea",
+      title: 'Gen-Z Creative Date Idea',
       description: content,
-      duration: "2h",
+      duration: '2h',
       budget: shuffled.slice(0, 3).join(''),
-      vibe: "Romantic"
+      vibe: 'Romantic'
     };
   }
 };
