@@ -159,6 +159,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License / 许可证
 
+Apache License Version 2.0, January 2004
+<http://www.apache.org/licenses/>
 ---
 
 ## 👨‍💻 Author / 作者
