@@ -4,7 +4,7 @@
 <img width="1200" height="475" alt="LoveSpark Banner" src="" />
 </div> -->
 
-## 🦞💘💝 clawbotbuilt My Valentinesite Overnight?!
+## 🔥🦞💝 clawbotbuilt My Valentinesite Overnight?!
 
 | Clawbot Campaign | Valentine Campaign |
 |---|---|
