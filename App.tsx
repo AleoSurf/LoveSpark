@@ -6,6 +6,7 @@ import SocialLinks from './components/SocialLinks';
 import { AppState } from './types';
 import { Heart, Power } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 
 type View = 'home' | 'spark' | 'adviser';
 
@@ -32,7 +33,12 @@ const App: React.FC = () => {
   };
 
   if (appState === AppState.CLOSED) {
-    return <Envelope onOpen={handleOpenEnvelope} />;
+    return (
+      <>
+        <Envelope onOpen={handleOpenEnvelope} />
+        <Analytics />
+      </>
+    );
   }
 
   return (
@@ -202,6 +208,7 @@ const App: React.FC = () => {
           Made by Leo🌊 with 🤎 • 2026 before Valentine 💕
         </motion.p>
       </footer>
+      <Analytics />
     </div>
   );
 };
